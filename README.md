@@ -99,9 +99,11 @@ regardless of channel. First launch registers the background
 OpenCodeServerAgent through `SMAppService` and creates the configuration
 under `~/Library/Application Support/OpenCodeServer`.
 
-Releasing is automated by `scripts/package-release.sh` (clean Release
-build with the configured identity, ditto zip + dmg, zip round-trip
-signature verification).
+Releasing is automated by `scripts/cut-release.sh <notes.md>` (clean
+Release build with the configured identity, ditto zip + dmg with zip
+round-trip signature verification, GitHub Release with a stable
+`-latest.zip` alias, and a Homebrew tap notification that auto-bumps the
+cask).
 
 ## Build
 
