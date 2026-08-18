@@ -4422,7 +4422,10 @@ fn wait_for_marker(marker: &std::path::Path, timeout: Duration, what: &str) -> i
         if marker.is_file() {
             return Ok(());
         }
-        thread::yield_now();
+        // Poll with a small sleep instead of a hot spin: on a contended CI
+        // runner a busy-yield loop starves the very fixture child whose
+        // marker it is waiting for.
+        thread::sleep(Duration::from_millis(10));
     }
     Err(io::Error::other(format!(
         "fixture never published its {what} marker at {}",
@@ -4522,9 +4525,12 @@ impl PortReservation {
             b"release\n",
         )
         .expect("publish fixture port release");
+        // Generous on purpose: this is fixture synchronization, not a
+        // product timing assertion, and CI runners schedule the fixture
+        // child with wide variance under parallel load.
         wait_for_marker(
             &self.executable.with_file_name(PORT_BIND_READY_MARKER),
-            Duration::from_secs(5),
+            Duration::from_secs(15),
             "port bind-ready",
         )
         .expect("fixture did not cross the reserved-port bind handoff");

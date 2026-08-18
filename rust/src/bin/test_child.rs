@@ -166,7 +166,9 @@ fn version() {
     if marker_present(PRE_EXEC_GATE_MARKER) {
         query_event("pre-exec-entered", "waiting-for-release");
         while !marker_present(PRE_EXEC_RELEASE_MARKER) {
-            thread::yield_now();
+            // Sleep-poll: a hot spin starves the test thread holding the
+            // gate on contended CI runners.
+            thread::sleep(Duration::from_millis(10));
         }
     }
     query_event("exec-ready", "version");
@@ -181,7 +183,7 @@ fn version() {
         while marker_present(GROUP_ESCAPE_HOLD_MARKER)
             && !marker_present(GROUP_ESCAPE_RELEASE_MARKER)
         {
-            thread::yield_now();
+            thread::sleep(Duration::from_millis(10));
         }
     }
     if marker_present(SILENT_VERSION_DESCENDANT_MARKER) {
@@ -373,7 +375,10 @@ fn serve() {
     if marker_present(PORT_RESERVATION_HELD_MARKER) {
         query_event("bind-wait", "port-reservation");
         while !marker_present(PORT_RESERVATION_RELEASE_MARKER) {
-            thread::yield_now();
+            // Sleep-poll: a hot spin starves the supervisor and test
+            // threads on contended CI runners, delaying this fixture's own
+            // bind handoff past its deadline.
+            thread::sleep(Duration::from_millis(10));
         }
     }
     query_event("bind-requested", &format!("port={port}"));
