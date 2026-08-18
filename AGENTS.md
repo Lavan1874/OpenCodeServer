@@ -504,6 +504,11 @@ mirror repository receives snapshot-only history through
 - Never push private branches or private history to the public remote;
   publishing goes only through `scripts/sync-public.sh`, whose
   sensitive-content gate reads the local patterns file and fails closed.
+- Tracked maintainer-private documents (currently
+  `docs/release-workflow.md`) are stripped from every snapshot by the
+  script's `private_paths` exclusion list; new private documents must be
+  added to that list, and the first sync after adding one should be
+  `--dry-run` to confirm the exclusion notice.
 - External contributions merge public → private
   (`git fetch public && git merge public/main`) and flow back to the public
   repository with the next snapshot.

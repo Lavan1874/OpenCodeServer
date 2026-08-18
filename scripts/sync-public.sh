@@ -92,21 +92,46 @@ fi
 
 tree="$(git rev-parse 'HEAD^{tree}')"
 
+# Tracked files that must stay maintainer-private: stripped from the
+# snapshot tree before scanning and pushing. Extend this list (not the
+# sync flow) when adding more private documents.
+private_paths=(
+    docs/release-workflow.md
+)
+private_index="$(mktemp)"
+public_tree="$tree"
+tree_files="$(git ls-tree -r --name-only "$tree")"
+removed_private=()
+for private_path in "${private_paths[@]}"; do
+    if print -r -- "$tree_files" | /usr/bin/grep -Fxq "$private_path"; then
+        removed_private+=("$private_path")
+    fi
+done
+if (( ${#removed_private[@]} > 0 )); then
+    GIT_INDEX_FILE="$private_index" git read-tree "$tree"
+    GIT_INDEX_FILE="$private_index" git rm --cached -q --ignore-unmatch "${removed_private[@]}"
+    public_tree="$(GIT_INDEX_FILE="$private_index" git write-tree)"
+    print "excluding maintainer-private files from the snapshot:"
+    for private_path in "${removed_private[@]}"; do
+        print "  - $private_path"
+    done
+fi
+
 # Gate 3: sensitive-content scan over the snapshot tree.
 hits="$(mktemp)"
 patterns="$(mktemp)"
 filtered=""
-trap 'rm -f "$hits" "$patterns" ${filtered:+"$filtered"}' EXIT
+trap 'rm -f "$hits" "$patterns" "$private_index" ${filtered:+"$filtered"}' EXIT
 /usr/bin/grep -v '^[[:space:]]*$' "$patterns_file" >"$patterns" 2>/dev/null || true
 if [[ -s "$patterns" ]]; then
-    git grep -i -I -n -F -f "$patterns" HEAD -- . >>"$hits" || true
+    git grep -i -I -n -F -f "$patterns" "$public_tree" -- . >>"$hits" || true
 else
     print -u2 "sync-public: warning: $patterns_file is missing or empty; generic patterns only"
 fi
 git grep -I -n -E \
     -e '[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}' \
     -e '/Users/[A-Za-z0-9._-]+' \
-    HEAD -- . >>"$hits" || true
+    "$public_tree" -- . >>"$hits" || true
 if [[ -s "$hits" && -r "$allow_file" ]]; then
     while IFS= read -r allowed; do
         [[ -n "$allowed" ]] || continue
@@ -132,14 +157,14 @@ if [[ -n "$note" ]]; then
 $note"
 fi
 if [[ -n "$parent" ]]; then
-    commit="$(printf '%s\n' "$message" | git commit-tree "$tree" -p "$parent")"
+    commit="$(printf '%s\n' "$message" | git commit-tree "$public_tree" -p "$parent")"
 else
-    commit="$(printf '%s\n' "$message" | git commit-tree "$tree")"
+    commit="$(printf '%s\n' "$message" | git commit-tree "$public_tree")"
 fi
 
 if (( dry_run )); then
     print "dry run: no push performed"
-    print "  tree:   $tree"
+    print "  tree:   $public_tree"
     print "  parent: ${parent:-<none - would be the first snapshot>}"
     print "  commit: $commit"
     if [[ -n "$parent" ]]; then
