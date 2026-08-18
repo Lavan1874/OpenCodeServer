@@ -88,11 +88,14 @@ every version update.
 
 ```sh
 brew tap lavan1874/opencodeserver
+brew trust lavan1874/opencodeserver
 brew install --cask opencodeserver
 ```
 
-Homebrew quarantines cask downloads, so expect the same one-time "Open
-Anyway" approval after each install and each `brew upgrade --cask`.
+`brew trust` is a one-time opt-in current Homebrew requires before
+loading packages from a third-party tap. Homebrew quarantines cask
+downloads, so expect the same one-time "Open Anyway" approval after each
+install and each `brew upgrade --cask`.
 
 Managed (MDM/enterprise) Macs may refuse non-notarized apps entirely,
 regardless of channel. First launch registers the background
