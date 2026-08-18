@@ -67,9 +67,23 @@ page. They are signed with an Apple Development certificate and **not
 notarized** — the Gatekeeper friction differs per channel, so pick what
 suits you:
 
-**A. Command line — no Gatekeeper prompt.** `curl` downloads carry no
-quarantine attribute, so the app opens without any dialog. Extract with
-`ditto` (not `unzip`) to preserve the signature:
+**A. One line.** Downloads the latest release over HTTPS, verifies the
+published SHA-256 digest and the app's code signature, installs to
+/Applications (with a ~/Applications fallback, no sudo), and launches —
+no Gatekeeper prompt. As with any `curl | bash`, you are executing
+whatever is served at that URL:
+
+```sh
+curl -fsSL https://raw.githubusercontent.com/Lavan1874/OpenCodeServer/main/scripts/install-app.sh | bash
+```
+
+If OpenCodeServer is already running, the script asks it to quit before
+replacing the bundle.
+
+**B. Command line, explicit — no Gatekeeper prompt.** The same channel
+without piping to a shell: `curl` downloads carry no quarantine
+attribute, so the app opens without any dialog. Extract with `ditto`
+(not `unzip`) to preserve the signature:
 
 ```sh
 curl -LO https://github.com/Lavan1874/OpenCodeServer/releases/latest/download/OpenCodeServer-latest.zip
@@ -78,13 +92,13 @@ mv OpenCodeServer.app /Applications
 open /Applications/OpenCodeServer.app
 ```
 
-**B. Browser download.** Grab the `.zip` or `.dmg` from the Releases
+**C. Browser download.** Grab the `.zip` or `.dmg` from the Releases
 page and drag `OpenCodeServer.app` to /Applications. The first open is
 blocked because the app is not notarized; approve it once via System
 Settings → Privacy & Security → **"Open Anyway"**. This repeats after
 every version update.
 
-**C. Homebrew tap.**
+**D. Homebrew tap.**
 
 ```sh
 brew tap lavan1874/opencodeserver

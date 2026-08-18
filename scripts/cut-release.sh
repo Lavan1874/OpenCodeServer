@@ -31,12 +31,20 @@ zip_path="build/dist/OpenCodeServer-${version}.zip"
 dmg_path="build/dist/OpenCodeServer-${version}.dmg"
 latest_path="build/dist/OpenCodeServer-latest.zip"
 cp "$zip_path" "$latest_path"
+(
+    cd build/dist
+    /usr/bin/shasum -a 256 "OpenCodeServer-${version}.zip" \
+        >"OpenCodeServer-${version}.zip.sha256"
+    /usr/bin/shasum -a 256 "OpenCodeServer-latest.zip" \
+        >"OpenCodeServer-latest.zip.sha256"
+)
 
 gh release create "v${version}" \
     --repo Lavan1874/OpenCodeServer \
     --title "OpenCodeServer ${short_version} (Build ${version})" \
     --notes-file "$notes_path" \
-    "$zip_path" "$dmg_path" "$latest_path"
+    "$zip_path" "$zip_path.sha256" "$dmg_path" \
+    "$latest_path" "$latest_path.sha256"
 
 gh api repos/Lavan1874/homebrew-opencodeserver/dispatches \
     -f event_type=release-published
