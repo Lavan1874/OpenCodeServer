@@ -143,7 +143,7 @@
 - 首次启动时自动打开一次设置窗口（HIG Onboarding：在首次运行时把设置入口摆到用户面前，而不是留给一个灰色图标）；UserDefaults 标记保证只发生一次，之后永不自动弹出。这不是向导，只是单次入口展示。
 - 不启用 App Sandbox；从第一版启用 Hardened Runtime，并坚持最小 entitlement 和最小权限。
 - 开发和发布流程不以 Developer ID 或公证为前提，但 App Bundle、嵌套可执行文件、签名顺序和 entitlement 从第一版起保持符合未来 Developer ID 签名与公证的结构要求；不得为此增加当前产品功能或用户流程的复杂度。
-- 第一阶段允许在用户自己的多台 Apple Silicon Mac 上测试，但不面向公众分发；暂不支持 Intel Mac。
+- 第一阶段自 2026-08-18 起面向公众分发预编译构建：GitHub Release 产物（ditto zip 与 dmg）支持 curl 直装（无隔离属性、无 Gatekeeper 提示）、浏览器下载和公开 Homebrew tap（`lavan1874/opencodeserver`，GitHub 仓库 `homebrew-opencodeserver`）三种渠道，由用户自选；未公证期间，带隔离属性的渠道（浏览器下载、tap）每次安装与升级需要一次“仍要打开”批准；受管（MDM）Mac 可能整体拒绝未公证应用。暂不支持 Intel Mac。
 - 第一阶段最低支持版本为 macOS 26。
 - 正式测试和日常使用统一安装到 `/Applications/OpenCodeServer.app`；不使用 `~/Applications`，注册后台服务后保持安装路径稳定。
 - 指定一台开发 Mac 保存当前 Apple Development 私钥并统一签署 Release 验收构建；Debug、测试和 CI 继续使用 ad hoc；其他测试 Mac 只安装已签名构建和公共证书，不持有签名私钥。

@@ -19,6 +19,18 @@ The Phase 1 detail "Release.xcconfig carries the identity" is superseded:
 the xcconfig keeps the ad hoc default and `scripts/build.sh` injects the
 configured identity, preserving the measured signing behavior.
 
+Amendment — 2026-08-18: the distribution premise "brew tap installs do
+not set the quarantine attribute" no longer holds. Homebrew 4.2
+(2024-01) began quarantining cask downloads by default, and Homebrew
+5.0 (2025-11) deprecated the `--no-quarantine` bypass while starting to
+deprecate casks that cannot pass Gatekeeper. Accepted distribution while
+not notarized: GitHub Release artifacts (ditto zip + dmg) reachable via
+curl (no quarantine, no prompt), browser download, or the public tap
+`lavan1874/opencodeserver` — the latter two channels require one
+Gatekeeper "Open Anyway" approval per install and per upgrade. Removing
+that friction (Developer ID + notarization) remains a future identity
+change under this ADR's framework.
+
 ## Context
 
 Every `CFBundleVersion` upgrade of the installed product shows one or

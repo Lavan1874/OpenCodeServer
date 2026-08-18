@@ -59,6 +59,50 @@ decision lives in the [ADRs](docs/adr).
 - To build from source: Xcode 26 with the macOS 26 SDK, and stable Rust
   1.88 or newer
 
+## Download & install
+
+Prebuilt bundles for every release are on the
+[GitHub Releases](https://github.com/Lavan1874/OpenCodeServer/releases)
+page. They are signed with an Apple Development certificate and **not
+notarized** — the Gatekeeper friction differs per channel, so pick what
+suits you:
+
+**A. Command line — no Gatekeeper prompt.** `curl` downloads carry no
+quarantine attribute, so the app opens without any dialog. Extract with
+`ditto` (not `unzip`) to preserve the signature:
+
+```sh
+curl -LO https://github.com/Lavan1874/OpenCodeServer/releases/latest/download/OpenCodeServer-latest.zip
+ditto -x -k OpenCodeServer-latest.zip
+mv OpenCodeServer.app /Applications
+open /Applications/OpenCodeServer.app
+```
+
+**B. Browser download.** Grab the `.zip` or `.dmg` from the Releases
+page and drag `OpenCodeServer.app` to /Applications. The first open is
+blocked because the app is not notarized; approve it once via System
+Settings → Privacy & Security → **"Open Anyway"**. This repeats after
+every version update.
+
+**C. Homebrew tap.**
+
+```sh
+brew tap lavan1874/opencodeserver
+brew install --cask opencodeserver
+```
+
+Homebrew quarantines cask downloads, so expect the same one-time "Open
+Anyway" approval after each install and each `brew upgrade --cask`.
+
+Managed (MDM/enterprise) Macs may refuse non-notarized apps entirely,
+regardless of channel. First launch registers the background
+OpenCodeServerAgent through `SMAppService` and creates the configuration
+under `~/Library/Application Support/OpenCodeServer`.
+
+Releasing is automated by `scripts/package-release.sh` (clean Release
+build with the configured identity, ditto zip + dmg, zip round-trip
+signature verification).
+
 ## Build
 
 Open `OpenCodeServer.xcodeproj` directly in Xcode 26 and use the shared
