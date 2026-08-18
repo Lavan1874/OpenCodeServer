@@ -1,0 +1,84 @@
+name: Tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  # ──────────────────────────────────────────────────────────────────
+  # Rust: format check, lint, and the full test suite including the
+  # test-fixture feature that gates the process-supervision integration
+  # tests. These integration tests spawn real child processes and exercise
+  # signal handling, kqueue, and IPC backpressure, so they need a real
+  # POSIX environment — the macOS runner provides that.
+  # ──────────────────────────────────────────────────────────────────
+  rust:
+    name: Rust (fmt, clippy, test)
+    runs-on: macos-26
+    timeout-minutes: 15
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Rust toolchain
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          components: rustfmt, clippy
+
+      - name: Cache Cargo registry and build artifacts
+        uses: Swatinem/rust-cache@v2
+
+      - name: Check formatting
+        run: cargo fmt --check
+
+      - name: Clippy (all targets, test-fixture, warnings as errors)
+        run: cargo clippy --all-targets --features test-fixture -- -D warnings
+
+      - name: Tests (all targets, test-fixture)
+        run: cargo test --all --features test-fixture
+        env:
+          # Sets the `ci` cfg flag so tests marked with
+          # #[cfg_attr(ci, ignore)] are reported as ignored, not silently
+          # passed. Local runs without this flag execute every test.
+          RUSTFLAGS: "--cfg ci"
+
+  # ──────────────────────────────────────────────────────────────────
+  # Swift: the full Xcode test suite. The project deployment target is
+  # macOS 26, so the runner must be macos-26 with Xcode 26. The Xcode
+  # Run Script phase builds and signs the nested Rust binaries before
+  # Xcode signs the outer app; CI uses ad-hoc signing (-), which is
+  # sufficient for running tests — only real-machine acceptance needs
+  # the local self-signed identity.
+  # ──────────────────────────────────────────────────────────────────
+  swift:
+    name: Swift (xcodebuild test)
+    runs-on: macos-26
+    timeout-minutes: 20
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Rust toolchain (for the Xcode build script phase)
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Select Xcode
+        run: sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
+
+      - name: Run tests
+        run: |
+          set -o pipefail
+          xcodebuild test \
+            -project OpenCodeServer.xcodeproj \
+            -scheme OpenCodeServer \
+            -configuration Debug \
+            -destination 'platform=macOS' \
+            CODE_SIGN_IDENTITY="-" \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGNING_ALLOWED=YES \
+            2>&1 | tee build.log
+
+      - name: On failure, show focused errors
+        if: failure()
+        run: |
+          grep -E "(error:|Test Case.*failed|TEST FAILED|BUILD FAILED)" build.log || true

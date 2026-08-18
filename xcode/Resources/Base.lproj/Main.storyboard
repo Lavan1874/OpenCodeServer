@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="26400" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="26400"/>
+    </dependencies>
+    <scenes>
+        <!--Application and Main Menu-->
+        <scene sceneID="App-Scene-001">
+            <objects>
+                <application id="Application-001" sceneMemberID="viewController">
+                    <menu key="mainMenu" title="Main Menu" systemMenu="main" id="Main-Menu-001">
+                        <items>
+                            <menuItem title="OpenCodeServer" id="Application-Menu-Item">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <menu key="submenu" title="OpenCodeServer" systemMenu="apple" id="Application-Menu">
+                                    <items>
+                                        <menuItem title="About OpenCodeServer" id="About-Item">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="orderFrontStandardAboutPanel:" target="First-Responder-001" id="About-Action"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="Application-Separ-001"/>
+                                        <menuItem title="Settings…" keyEquivalent="," id="Settings-Item">
+                                            <connections>
+                                                <action selector="showSettings:" target="App-Delegate-001" id="Settings-Action"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="Application-Separ-002"/>
+                                        <menuItem title="Services" id="Services-Item">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <menu key="submenu" title="Services" systemMenu="services" id="Services-Menu"/>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="Application-Separ-003"/>
+                                        <menuItem title="Hide OpenCodeServer" keyEquivalent="h" id="Hide-Item">
+                                            <connections>
+                                                <action selector="hide:" target="First-Responder-001" id="Hide-Action"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Hide Others" keyEquivalent="h" id="Hide-Others-Item">
+                                            <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
+                                            <connections>
+                                                <action selector="hideOtherApplications:" target="First-Responder-001" id="Hide-Others-Action"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Show All" id="Show-All-Item">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="unhideAllApplications:" target="First-Responder-001" id="Show-All-Action"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="Application-Separ-004"/>
+                                        <menuItem title="Quit OpenCodeServer" keyEquivalent="q" id="Quit-Item">
+                                            <connections>
+                                                <action selector="terminate:" target="First-Responder-001" id="Quit-Action"/>
+                                            </connections>
+                                        </menuItem>
+                                    </items>
+                                </menu>
+                            </menuItem>
+                            <menuItem title="Edit" id="Edit-Menu-Item">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <menu key="submenu" title="Edit" id="Edit-Menu">
+                                    <items>
+                                        <menuItem title="Undo" keyEquivalent="z" id="Undo-Item">
+                                            <connections>
+                                                <action selector="undo:" target="First-Responder-001" id="Undo-Action"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Redo" keyEquivalent="Z" id="Redo-Item">
+                                            <connections>
+                                                <action selector="redo:" target="First-Responder-001" id="Redo-Action"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="Edit-Separ-001"/>
+                                        <menuItem title="Cut" keyEquivalent="x" id="Cut-Item">
+                                            <connections>
+                                                <action selector="cut:" target="First-Responder-001" id="Cut-Action"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Copy" keyEquivalent="c" id="Copy-Item">
+                                            <connections>
+                                                <action selector="copy:" target="First-Responder-001" id="Copy-Action"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Paste" keyEquivalent="v" id="Paste-Item">
+                                            <connections>
+                                                <action selector="paste:" target="First-Responder-001" id="Paste-Action"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Paste and Match Style" keyEquivalent="V" id="Paste-Plain-Item">
+                                            <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
+                                            <connections>
+                                                <action selector="pasteAsPlainText:" target="First-Responder-001" id="Paste-Plain-Action"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Delete" id="Delete-Item">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="delete:" target="First-Responder-001" id="Delete-Action"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Select All" keyEquivalent="a" id="Select-All-Item">
+                                            <connections>
+                                                <action selector="selectAll:" target="First-Responder-001" id="Select-All-Action"/>
+                                            </connections>
+                                        </menuItem>
+                                    </items>
+                                </menu>
+                            </menuItem>
+                            <menuItem title="Window" id="Window-Menu-Item">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <menu key="submenu" title="Window" systemMenu="window" id="Window-Menu">
+                                    <items>
+                                        <menuItem title="Minimize" keyEquivalent="m" id="Minimize-Item">
+                                            <connections>
+                                                <action selector="performMiniaturize:" target="First-Responder-001" id="Minimize-Action"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="Window-Separ-001"/>
+                                        <menuItem title="Bring All to Front" id="Bring-All-Item">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="arrangeInFront:" target="First-Responder-001" id="Bring-All-Action"/>
+                                            </connections>
+                                        </menuItem>
+                                    </items>
+                                </menu>
+                            </menuItem>
+                        </items>
+                    </menu>
+                    <connections>
+                        <outlet property="delegate" destination="App-Delegate-001" id="Delegate-Outlet"/>
+                    </connections>
+                </application>
+                <customObject id="App-Delegate-001" customClass="AppDelegate" customModule="OpenCodeServer" customModuleProvider="target"/>
+                <customObject id="First-Responder-001" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="75" y="0.0"/>
+        </scene>
+    </scenes>
+</document>

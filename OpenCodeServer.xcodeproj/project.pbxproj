@@ -1,0 +1,625 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 71;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D00000000000000000000001 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00000000000000000000001 /* AppDelegate.swift */; };
+		D00000000000000000000002 /* ApplicationPaths.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00000000000000000000002 /* ApplicationPaths.swift */; };
+		D00000000000000000000003 /* ConfigStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00000000000000000000003 /* ConfigStore.swift */; };
+		D00000000000000000000004 /* IPCClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00000000000000000000004 /* IPCClient.swift */; };
+		D00000000000000000000005 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00000000000000000000005 /* Models.swift */; };
+		D00000000000000000000006 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00000000000000000000006 /* NotificationController.swift */; };
+		D00000000000000000000007 /* ServiceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00000000000000000000007 /* ServiceController.swift */; };
+		D00000000000000000000009 /* StatusSubscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00000000000000000000009 /* StatusSubscription.swift */; };
+		D00000000000000000000012 /* SettingsWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00000000000000000000012 /* SettingsWindowController.swift */; };
+		D00000000000000000000013 /* SettingsWindowController+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00000000000000000000013 /* SettingsWindowController+Layout.swift */; };
+		D00000000000000000000014 /* SettingsWindowController+CredentialEditing.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00000000000000000000014 /* SettingsWindowController+CredentialEditing.swift */; };
+		D00000000000000000000015 /* SettingsWindowController+SaveFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00000000000000000000015 /* SettingsWindowController+SaveFlow.swift */; };
+		D00000000000000000000018 /* CredentialSaveTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00000000000000000000018 /* CredentialSaveTransaction.swift */; };
+		D00000000000000000000019 /* CredentialMutationJournal.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00000000000000000000019 /* CredentialMutationJournal.swift */; };
+		D00000000000000000000023 /* CredentialMigrationRecovery.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00000000000000000000023 /* CredentialMigrationRecovery.swift */; };
+		D00000000000000000000024 /* CredentialSaveTransactionTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00000000000000000000024 /* CredentialSaveTransactionTypes.swift */; };
+		D00000000000000000000025 /* CredentialMutationSaveTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00000000000000000000025 /* CredentialMutationSaveTransaction.swift */; };
+		D00000000000000000000026 /* CredentialMigrationSaveTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00000000000000000000026 /* CredentialMigrationSaveTransaction.swift */; };
+		D00000000000000000000028 /* CredentialMigrationRecoveryCleanup.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00000000000000000000028 /* CredentialMigrationRecoveryCleanup.swift */; };
+		D00000000000000000000063 /* ServiceRegistrationTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00000000000000000000063 /* ServiceRegistrationTransaction.swift */; };
+		D00000000000000000000064 /* OpenCodeServerAgentRegistrationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00000000000000000000064 /* OpenCodeServerAgentRegistrationController.swift */; };
+		D00000000000000000000065 /* ServiceControllerTestSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00000000000000000000065 /* ServiceControllerTestSupport.swift */; };
+		D00000000000000000000066 /* ServiceRegistrationTransactionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00000000000000000000066 /* ServiceRegistrationTransactionTests.swift */; };
+		D00000000000000000000029 /* PrivateStateFileReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00000000000000000000029 /* PrivateStateFileReader.swift */; };
+		D00000000000000000000043 /* OpenCodeServerAgentRegistrationController+Lifecycle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00000000000000000000043 /* OpenCodeServerAgentRegistrationController+Lifecycle.swift */; };
+		D00000000000000000000044 /* OpenCodeServerAgentRegistrationController+Registration.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00000000000000000000044 /* OpenCodeServerAgentRegistrationController+Registration.swift */; };
+		D00000000000000000000045 /* OpenCodeServerAgentRegistrationController+Verification.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00000000000000000000045 /* OpenCodeServerAgentRegistrationController+Verification.swift */; };
+		D00000000000000000000027 /* CredentialMigrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00000000000000000000027 /* CredentialMigrationTests.swift */; };
+		D00000000000000000000067 /* PrivateStateFileReaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00000000000000000000067 /* PrivateStateFileReaderTests.swift */; };
+		D00000000000000000000016 /* SettingsWindowController+ExecutableSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00000000000000000000016 /* SettingsWindowController+ExecutableSelection.swift */; };
+		D00000000000000000000017 /* SettingsWindowController+StatusRefresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00000000000000000000017 /* SettingsWindowController+StatusRefresh.swift */; };
+		D00000000000000000000010 /* KeychainStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00000000000000000000010 /* KeychainStore.swift */; };
+		D00000000000000000000011 /* CredentialMutationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00000000000000000000011 /* CredentialMutationCoordinator.swift */; };
+		D00000000000000000000020 /* ModelsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00000000000000000000020 /* ModelsTests.swift */; };
+		D00000000000000000000021 /* AppKitBaselineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00000000000000000000021 /* AppKitBaselineTests.swift */; };
+		D00000000000000000000033 /* SettingsCredentialSessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00000000000000000000036 /* SettingsCredentialSessionTests.swift */; };
+		D00000000000000000000022 /* ServiceControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00000000000000000000022 /* ServiceControllerTests.swift */; };
+		D00000000000000000000036 /* MenuActionCapabilitiesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00000000000000000000037 /* MenuActionCapabilitiesTests.swift */; };
+		D00000000000000000000030 /* xcode/Resources/Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B00000000000000000000030 /* xcode/Resources/Assets.xcassets */; };
+		D00000000000000000000031 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B00000000000000000000032 /* Main.storyboard */; };
+		D00000000000000000000032 /* resources/ai.opencode.server.agent.plist in Embed LaunchAgent Plist */ = {isa = PBXBuildFile; fileRef = B00000000000000000000033 /* resources/ai.opencode.server.agent.plist */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C00000000000000000000010 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A00000000000000000000001 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F00000000000000000000001;
+			remoteInfo = OpenCodeServer;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		E00000000000000000000004 /* Embed LaunchAgent Plist */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = Contents/Library/LaunchAgents;
+			dstSubfolderSpec = 1;
+			files = (
+				D00000000000000000000032 /* resources/ai.opencode.server.agent.plist in Embed LaunchAgent Plist */,
+			);
+			name = "Embed LaunchAgent Plist";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		B00000000000000000000001 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		B00000000000000000000002 /* ApplicationPaths.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationPaths.swift; sourceTree = "<group>"; };
+		B00000000000000000000003 /* ConfigStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigStore.swift; sourceTree = "<group>"; };
+		B00000000000000000000004 /* IPCClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPCClient.swift; sourceTree = "<group>"; };
+		B00000000000000000000005 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		B00000000000000000000006 /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
+		B00000000000000000000007 /* ServiceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceController.swift; sourceTree = "<group>"; };
+		B00000000000000000000009 /* StatusSubscription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusSubscription.swift; sourceTree = "<group>"; };
+		B00000000000000000000012 /* SettingsWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsWindowController.swift; sourceTree = "<group>"; };
+		B00000000000000000000013 /* SettingsWindowController+Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SettingsWindowController+Layout.swift"; sourceTree = "<group>"; };
+		B00000000000000000000014 /* SettingsWindowController+CredentialEditing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SettingsWindowController+CredentialEditing.swift"; sourceTree = "<group>"; };
+		B00000000000000000000015 /* SettingsWindowController+SaveFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SettingsWindowController+SaveFlow.swift"; sourceTree = "<group>"; };
+		B00000000000000000000018 /* CredentialSaveTransaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialSaveTransaction.swift; sourceTree = "<group>"; };
+		B00000000000000000000019 /* CredentialMutationJournal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialMutationJournal.swift; sourceTree = "<group>"; };
+		B00000000000000000000023 /* CredentialMigrationRecovery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialMigrationRecovery.swift; sourceTree = "<group>"; };
+		B00000000000000000000024 /* CredentialSaveTransactionTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialSaveTransactionTypes.swift; sourceTree = "<group>"; };
+		B00000000000000000000025 /* CredentialMutationSaveTransaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialMutationSaveTransaction.swift; sourceTree = "<group>"; };
+		B00000000000000000000026 /* CredentialMigrationSaveTransaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialMigrationSaveTransaction.swift; sourceTree = "<group>"; };
+		B00000000000000000000028 /* CredentialMigrationRecoveryCleanup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialMigrationRecoveryCleanup.swift; sourceTree = "<group>"; };
+		B00000000000000000000029 /* PrivateStateFileReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateStateFileReader.swift; sourceTree = "<group>"; };
+		B00000000000000000000027 /* CredentialMigrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialMigrationTests.swift; sourceTree = "<group>"; };
+		B00000000000000000000067 /* PrivateStateFileReaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateStateFileReaderTests.swift; sourceTree = "<group>"; };
+		B00000000000000000000016 /* SettingsWindowController+ExecutableSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SettingsWindowController+ExecutableSelection.swift"; sourceTree = "<group>"; };
+		B00000000000000000000017 /* SettingsWindowController+StatusRefresh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SettingsWindowController+StatusRefresh.swift"; sourceTree = "<group>"; };
+		B00000000000000000000010 /* KeychainStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainStore.swift; sourceTree = "<group>"; };
+		B00000000000000000000011 /* CredentialMutationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialMutationCoordinator.swift; sourceTree = "<group>"; };
+		B00000000000000000000020 /* ModelsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelsTests.swift; sourceTree = "<group>"; };
+		B00000000000000000000021 /* AppKitBaselineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppKitBaselineTests.swift; sourceTree = "<group>"; };
+		B00000000000000000000036 /* SettingsCredentialSessionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCredentialSessionTests.swift; sourceTree = "<group>"; };
+		B00000000000000000000022 /* ServiceControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceControllerTests.swift; sourceTree = "<group>"; };
+		B00000000000000000000037 /* MenuActionCapabilitiesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuActionCapabilitiesTests.swift; sourceTree = "<group>"; };
+		B00000000000000000000030 /* xcode/Resources/Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = xcode/Resources/Assets.xcassets; sourceTree = "<group>"; };
+		B00000000000000000000031 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		B00000000000000000000033 /* resources/ai.opencode.server.agent.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = resources/ai.opencode.server.agent.plist; sourceTree = "<group>"; };
+		B00000000000000000000034 /* resources/OpenCodeServer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = resources/OpenCodeServer.entitlements; sourceTree = "<group>"; };
+		B00000000000000000000035 /* resources/OpenCodeServerAgent.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = resources/OpenCodeServerAgent.entitlements; sourceTree = "<group>"; };
+		B00000000000000000000063 /* ServiceRegistrationTransaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceRegistrationTransaction.swift; sourceTree = "<group>"; };
+		B00000000000000000000064 /* OpenCodeServerAgentRegistrationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenCodeServerAgentRegistrationController.swift; sourceTree = "<group>"; };
+		B00000000000000000000065 /* ServiceControllerTestSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceControllerTestSupport.swift; sourceTree = "<group>"; };
+		B00000000000000000000066 /* ServiceRegistrationTransactionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceRegistrationTransactionTests.swift; sourceTree = "<group>"; };
+		B00000000000000000000043 /* OpenCodeServerAgentRegistrationController+Lifecycle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OpenCodeServerAgentRegistrationController+Lifecycle.swift"; sourceTree = "<group>"; };
+		B00000000000000000000044 /* OpenCodeServerAgentRegistrationController+Registration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OpenCodeServerAgentRegistrationController+Registration.swift"; sourceTree = "<group>"; };
+		B00000000000000000000045 /* OpenCodeServerAgentRegistrationController+Verification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OpenCodeServerAgentRegistrationController+Verification.swift"; sourceTree = "<group>"; };
+		B00000000000000000000040 /* Cargo.toml */ = {isa = PBXFileReference; lastKnownFileType = text; path = Cargo.toml; sourceTree = "<group>"; };
+		B00000000000000000000041 /* Cargo.lock */ = {isa = PBXFileReference; lastKnownFileType = text; path = Cargo.lock; sourceTree = "<group>"; };
+		B00000000000000000000042 /* build.rs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.rust; path = build.rs; sourceTree = "<group>"; };
+		B00000000000000000000050 /* Base.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Base.xcconfig; sourceTree = "<group>"; };
+		B00000000000000000000051 /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
+		B00000000000000000000052 /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
+		B00000000000000000000060 /* xcode-build-rust.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "xcode-build-rust.sh"; sourceTree = "<group>"; };
+		B00000000000000000000061 /* RustInputs.xcfilelist */ = {isa = PBXFileReference; lastKnownFileType = text.xcfilelist; path = RustInputs.xcfilelist; sourceTree = "<group>"; };
+		B00000000000000000000062 /* RustOutputs.xcfilelist */ = {isa = PBXFileReference; lastKnownFileType = text.xcfilelist; path = RustOutputs.xcfilelist; sourceTree = "<group>"; };
+		C00000000000000000000001 /* OpenCodeServer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpenCodeServer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C00000000000000000000002 /* OpenCodeServerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OpenCodeServerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E00000000000000000000002 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E00000000000000000000012 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A00000000000000000000002 = {
+			isa = PBXGroup;
+			children = (
+				A00000000000000000000005 /* OpenCodeServer */,
+				A00000000000000000000006 /* OpenCodeServerTests */,
+				A00000000000000000000007 /* Resources */,
+				A00000000000000000000009 /* Rust */,
+				A0000000000000000000000A /* Scripts */,
+				A00000000000000000000008 /* Xcode */,
+				A00000000000000000000004 /* Configuration */,
+				A00000000000000000000003 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A00000000000000000000003 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C00000000000000000000001 /* OpenCodeServer.app */,
+				C00000000000000000000002 /* OpenCodeServerTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A00000000000000000000004 /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				B00000000000000000000050 /* Base.xcconfig */,
+				B00000000000000000000051 /* Debug.xcconfig */,
+				B00000000000000000000052 /* Release.xcconfig */,
+			);
+			name = Configuration;
+			path = Config;
+			sourceTree = "<group>";
+		};
+		A00000000000000000000005 /* OpenCodeServer */ = {
+			isa = PBXGroup;
+			children = (
+				B00000000000000000000001 /* AppDelegate.swift */,
+				B00000000000000000000002 /* ApplicationPaths.swift */,
+				B00000000000000000000003 /* ConfigStore.swift */,
+				B00000000000000000000004 /* IPCClient.swift */,
+				B00000000000000000000005 /* Models.swift */,
+				B00000000000000000000006 /* NotificationController.swift */,
+				B00000000000000000000007 /* ServiceController.swift */,
+				A0000000000000000000000C /* SettingsWindowController */,
+				B00000000000000000000009 /* StatusSubscription.swift */,
+				B00000000000000000000010 /* KeychainStore.swift */,
+				B00000000000000000000011 /* CredentialMutationCoordinator.swift */,
+				B00000000000000000000018 /* CredentialSaveTransaction.swift */,
+				B00000000000000000000019 /* CredentialMutationJournal.swift */,
+				B00000000000000000000023 /* CredentialMigrationRecovery.swift */,
+				B00000000000000000000024 /* CredentialSaveTransactionTypes.swift */,
+				B00000000000000000000025 /* CredentialMutationSaveTransaction.swift */,
+				B00000000000000000000026 /* CredentialMigrationSaveTransaction.swift */,
+				B00000000000000000000028 /* CredentialMigrationRecoveryCleanup.swift */,
+				B00000000000000000000063 /* ServiceRegistrationTransaction.swift */,
+				B00000000000000000000064 /* OpenCodeServerAgentRegistrationController.swift */,
+				B00000000000000000000043 /* OpenCodeServerAgentRegistrationController+Lifecycle.swift */,
+				B00000000000000000000044 /* OpenCodeServerAgentRegistrationController+Registration.swift */,
+				B00000000000000000000045 /* OpenCodeServerAgentRegistrationController+Verification.swift */,
+				B00000000000000000000029 /* PrivateStateFileReader.swift */,
+			);
+			name = OpenCodeServer;
+			path = swift/Sources/OpenCodeServer;
+			sourceTree = "<group>";
+		};
+		A00000000000000000000006 /* OpenCodeServerTests */ = {
+			isa = PBXGroup;
+			children = (
+				B00000000000000000000021 /* AppKitBaselineTests.swift */,
+				B00000000000000000000036 /* SettingsCredentialSessionTests.swift */,
+				B00000000000000000000037 /* MenuActionCapabilitiesTests.swift */,
+				B00000000000000000000020 /* ModelsTests.swift */,
+				B00000000000000000000022 /* ServiceControllerTests.swift */,
+				B00000000000000000000065 /* ServiceControllerTestSupport.swift */,
+				B00000000000000000000066 /* ServiceRegistrationTransactionTests.swift */,
+				B00000000000000000000027 /* CredentialMigrationTests.swift */,
+				B00000000000000000000067 /* PrivateStateFileReaderTests.swift */,
+			);
+			name = OpenCodeServerTests;
+			path = swift/Tests/OpenCodeServerTests;
+			sourceTree = "<group>";
+		};
+		A00000000000000000000007 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				B00000000000000000000032 /* Main.storyboard */,
+				B00000000000000000000030 /* xcode/Resources/Assets.xcassets */,
+				B00000000000000000000033 /* resources/ai.opencode.server.agent.plist */,
+				B00000000000000000000034 /* resources/OpenCodeServer.entitlements */,
+				B00000000000000000000035 /* resources/OpenCodeServerAgent.entitlements */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		A00000000000000000000008 /* Xcode */ = {
+			isa = PBXGroup;
+			children = (
+				A0000000000000000000000B /* File Lists */,
+			);
+			name = Xcode;
+			sourceTree = "<group>";
+		};
+		A00000000000000000000009 /* Rust */ = {
+			isa = PBXGroup;
+			children = (
+				B00000000000000000000040 /* Cargo.toml */,
+				B00000000000000000000041 /* Cargo.lock */,
+				B00000000000000000000042 /* build.rs */,
+			);
+			name = Rust;
+			sourceTree = "<group>";
+		};
+		A0000000000000000000000A /* Scripts */ = {
+			isa = PBXGroup;
+			children = (
+				B00000000000000000000060 /* xcode-build-rust.sh */,
+			);
+			name = Scripts;
+			path = scripts;
+			sourceTree = "<group>";
+		};
+		A0000000000000000000000B /* File Lists */ = {
+			isa = PBXGroup;
+			children = (
+				B00000000000000000000061 /* RustInputs.xcfilelist */,
+				B00000000000000000000062 /* RustOutputs.xcfilelist */,
+			);
+			name = "File Lists";
+			path = xcode/FileLists;
+			sourceTree = "<group>";
+		};
+		A0000000000000000000000C /* SettingsWindowController */ = {
+			isa = PBXGroup;
+			children = (
+				B00000000000000000000012 /* SettingsWindowController.swift */,
+				B00000000000000000000013 /* SettingsWindowController+Layout.swift */,
+				B00000000000000000000014 /* SettingsWindowController+CredentialEditing.swift */,
+				B00000000000000000000015 /* SettingsWindowController+SaveFlow.swift */,
+				B00000000000000000000016 /* SettingsWindowController+ExecutableSelection.swift */,
+				B00000000000000000000017 /* SettingsWindowController+StatusRefresh.swift */,
+			);
+			path = SettingsWindowController;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F00000000000000000000001 /* OpenCodeServer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A00000000000000000000101 /* Build configuration list for PBXNativeTarget "OpenCodeServer" */;
+			buildPhases = (
+				E00000000000000000000001 /* Sources */,
+				E00000000000000000000002 /* Frameworks */,
+				E00000000000000000000003 /* Resources */,
+				E00000000000000000000004 /* Embed LaunchAgent Plist */,
+				E00000000000000000000005 /* Build, Embed, and Sign Rust Executables */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = OpenCodeServer;
+			productName = OpenCodeServer;
+			productReference = C00000000000000000000001 /* OpenCodeServer.app */;
+			productType = "com.apple.product-type.application";
+		};
+		F00000000000000000000002 /* OpenCodeServerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A00000000000000000000102 /* Build configuration list for PBXNativeTarget "OpenCodeServerTests" */;
+			buildPhases = (
+				E00000000000000000000011 /* Sources */,
+				E00000000000000000000012 /* Frameworks */,
+				E00000000000000000000013 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C00000000000000000000011 /* PBXTargetDependency */,
+			);
+			name = OpenCodeServerTests;
+			productName = OpenCodeServerTests;
+			productReference = C00000000000000000000002 /* OpenCodeServerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A00000000000000000000001 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 2660;
+				LastUpgradeCheck = 2660;
+				TargetAttributes = {
+					F00000000000000000000001 = {
+						CreatedOnToolsVersion = 26.6;
+					};
+					F00000000000000000000002 = {
+						CreatedOnToolsVersion = 26.6;
+						TestTargetID = F00000000000000000000001;
+					};
+				};
+			};
+			buildConfigurationList = A00000000000000000000100 /* Build configuration list for PBXProject "OpenCodeServer" */;
+			compatibilityVersion = "Xcode 16.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A00000000000000000000002;
+			productRefGroup = A00000000000000000000003 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F00000000000000000000001 /* OpenCodeServer */,
+				F00000000000000000000002 /* OpenCodeServerTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E00000000000000000000003 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D00000000000000000000030 /* xcode/Resources/Assets.xcassets in Resources */,
+				D00000000000000000000031 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E00000000000000000000013 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		E00000000000000000000005 /* Build, Embed, and Sign Rust Executables */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"$(PROJECT_DIR)/xcode/FileLists/RustInputs.xcfilelist",
+			);
+			inputPaths = (
+			);
+			name = "Build, Embed, and Sign Rust Executables";
+			outputFileListPaths = (
+				"$(PROJECT_DIR)/xcode/FileLists/RustOutputs.xcfilelist",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/zsh;
+			shellScript = "\"$PROJECT_DIR/scripts/xcode-build-rust.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E00000000000000000000001 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D00000000000000000000001 /* AppDelegate.swift in Sources */,
+				D00000000000000000000002 /* ApplicationPaths.swift in Sources */,
+				D00000000000000000000003 /* ConfigStore.swift in Sources */,
+				D00000000000000000000004 /* IPCClient.swift in Sources */,
+				D00000000000000000000005 /* Models.swift in Sources */,
+				D00000000000000000000006 /* NotificationController.swift in Sources */,
+				D00000000000000000000007 /* ServiceController.swift in Sources */,
+				D00000000000000000000012 /* SettingsWindowController.swift in Sources */,
+				D00000000000000000000013 /* SettingsWindowController+Layout.swift in Sources */,
+				D00000000000000000000014 /* SettingsWindowController+CredentialEditing.swift in Sources */,
+				D00000000000000000000015 /* SettingsWindowController+SaveFlow.swift in Sources */,
+				D00000000000000000000016 /* SettingsWindowController+ExecutableSelection.swift in Sources */,
+				D00000000000000000000017 /* SettingsWindowController+StatusRefresh.swift in Sources */,
+				D00000000000000000000009 /* StatusSubscription.swift in Sources */,
+				D00000000000000000000010 /* KeychainStore.swift in Sources */,
+				D00000000000000000000011 /* CredentialMutationCoordinator.swift in Sources */,
+				D00000000000000000000018 /* CredentialSaveTransaction.swift in Sources */,
+				D00000000000000000000019 /* CredentialMutationJournal.swift in Sources */,
+				D00000000000000000000023 /* CredentialMigrationRecovery.swift in Sources */,
+				D00000000000000000000024 /* CredentialSaveTransactionTypes.swift in Sources */,
+				D00000000000000000000025 /* CredentialMutationSaveTransaction.swift in Sources */,
+				D00000000000000000000026 /* CredentialMigrationSaveTransaction.swift in Sources */,
+				D00000000000000000000028 /* CredentialMigrationRecoveryCleanup.swift in Sources */,
+				D00000000000000000000063 /* ServiceRegistrationTransaction.swift in Sources */,
+				D00000000000000000000064 /* OpenCodeServerAgentRegistrationController.swift in Sources */,
+				D00000000000000000000043 /* OpenCodeServerAgentRegistrationController+Lifecycle.swift in Sources */,
+				D00000000000000000000044 /* OpenCodeServerAgentRegistrationController+Registration.swift in Sources */,
+				D00000000000000000000045 /* OpenCodeServerAgentRegistrationController+Verification.swift in Sources */,
+				D00000000000000000000029 /* PrivateStateFileReader.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E00000000000000000000011 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D00000000000000000000021 /* AppKitBaselineTests.swift in Sources */,
+				D00000000000000000000033 /* SettingsCredentialSessionTests.swift in Sources */,
+				D00000000000000000000036 /* MenuActionCapabilitiesTests.swift in Sources */,
+				D00000000000000000000020 /* ModelsTests.swift in Sources */,
+				D00000000000000000000022 /* ServiceControllerTests.swift in Sources */,
+				D00000000000000000000065 /* ServiceControllerTestSupport.swift in Sources */,
+				D00000000000000000000066 /* ServiceRegistrationTransactionTests.swift in Sources */,
+				D00000000000000000000027 /* CredentialMigrationTests.swift in Sources */,
+				D00000000000000000000067 /* PrivateStateFileReaderTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C00000000000000000000011 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F00000000000000000000001 /* OpenCodeServer */;
+			targetProxy = C00000000000000000000010 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		B00000000000000000000032 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B00000000000000000000031 /* Base */,
+			);
+			name = Main.storyboard;
+			path = xcode/Resources;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		A00000000000000000000200 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B00000000000000000000051 /* Debug.xcconfig */;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		A00000000000000000000201 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B00000000000000000000052 /* Release.xcconfig */;
+			buildSettings = {
+			};
+			name = Release;
+		};
+		A00000000000000000000210 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B00000000000000000000051 /* Debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = resources/OpenCodeServer.entitlements;
+				CODE_SIGN_INJECT_BASE_ENTITLEMENTS = NO;
+				COMBINE_HIDPI_IMAGES = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_DEBUG_DYLIB = NO;
+				EXECUTABLE_NAME = OpenCodeServer;
+				GENERATE_INFOPLIST_FILE = YES;
+				GENERATE_PKGINFO_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = OpenCodeServer;
+				INFOPLIST_KEY_CFBundleName = OpenCodeServer;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
+				INFOPLIST_KEY_LSUIElement = YES;
+				INFOPLIST_KEY_NSMainStoryboardFile = Main;
+				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "OpenCodeServer advertises your configured OpenCode service on the local network when you enable mDNS.";
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = ai.opencode.server;
+				PRODUCT_MODULE_NAME = OpenCodeServer;
+				PRODUCT_NAME = OpenCodeServer;
+			};
+			name = Debug;
+		};
+		A00000000000000000000211 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B00000000000000000000052 /* Release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = resources/OpenCodeServer.entitlements;
+				CODE_SIGN_INJECT_BASE_ENTITLEMENTS = NO;
+				COMBINE_HIDPI_IMAGES = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_DEBUG_DYLIB = NO;
+				EXECUTABLE_NAME = OpenCodeServer;
+				GENERATE_INFOPLIST_FILE = YES;
+				GENERATE_PKGINFO_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = OpenCodeServer;
+				INFOPLIST_KEY_CFBundleName = OpenCodeServer;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
+				INFOPLIST_KEY_LSUIElement = YES;
+				INFOPLIST_KEY_NSMainStoryboardFile = Main;
+				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "OpenCodeServer advertises your configured OpenCode service on the local network when you enable mDNS.";
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = ai.opencode.server;
+				PRODUCT_MODULE_NAME = OpenCodeServer;
+				PRODUCT_NAME = OpenCodeServer;
+			};
+			name = Release;
+		};
+		A00000000000000000000220 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B00000000000000000000051 /* Debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				ENABLE_DEBUG_DYLIB = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = ai.opencode.server.tests;
+				PRODUCT_MODULE_NAME = OpenCodeServerTests;
+				PRODUCT_NAME = OpenCodeServerTests;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OpenCodeServer.app/Contents/MacOS/OpenCodeServer";
+			};
+			name = Debug;
+		};
+		A00000000000000000000221 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B00000000000000000000052 /* Release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_INJECT_BASE_ENTITLEMENTS = NO;
+				ENABLE_DEBUG_DYLIB = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = ai.opencode.server.tests;
+				PRODUCT_MODULE_NAME = OpenCodeServerTests;
+				PRODUCT_NAME = OpenCodeServerTests;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OpenCodeServer.app/Contents/MacOS/OpenCodeServer";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A00000000000000000000100 /* Build configuration list for PBXProject "OpenCodeServer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A00000000000000000000200 /* Debug */,
+				A00000000000000000000201 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A00000000000000000000101 /* Build configuration list for PBXNativeTarget "OpenCodeServer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A00000000000000000000210 /* Debug */,
+				A00000000000000000000211 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A00000000000000000000102 /* Build configuration list for PBXNativeTarget "OpenCodeServerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A00000000000000000000220 /* Debug */,
+				A00000000000000000000221 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A00000000000000000000001 /* Project object */;
+}

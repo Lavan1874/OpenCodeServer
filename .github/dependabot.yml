@@ -1,0 +1,29 @@
+# Dependabot configuration for OpenCodeServer.
+#
+# Scope note: only the Cargo ecosystem is configured on purpose. The Swift
+# side is a pure Xcode/AppKit project with zero third-party dependencies and
+# MUST NOT grow a Package.swift (see AGENTS.md, Xcode project baseline), so
+# there is no SwiftPM manifest for Dependabot to scan.
+version: 2
+updates:
+  - package-ecosystem: "cargo"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+      timezone: "Asia/Shanghai"
+    open-pull-requests-limit: 5
+    # Minor and patch bumps land as one grouped PR to keep noise low; major
+    # bumps still arrive individually because they need a real review (MSRV,
+    # API changes).
+    groups:
+      cargo-minor-patch:
+        update-types:
+          - "minor"
+          - "patch"
+    commit-message:
+      prefix: "chore"
+      include: "scope"
+    labels:
+      - "dependencies"

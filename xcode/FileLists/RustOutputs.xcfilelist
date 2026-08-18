@@ -1,0 +1,4 @@
+$(TARGET_BUILD_DIR)/$(EXECUTABLE_FOLDER_PATH)/../Resources/OpenCodeServerAgent.app/Contents/Info.plist
+$(TARGET_BUILD_DIR)/$(EXECUTABLE_FOLDER_PATH)/../Resources/OpenCodeServerAgent.app/Contents/PkgInfo
+$(TARGET_BUILD_DIR)/$(EXECUTABLE_FOLDER_PATH)/../Resources/OpenCodeServerAgent.app/Contents/MacOS/OpenCodeServerAgent
+$(TARGET_BUILD_DIR)/$(EXECUTABLE_FOLDER_PATH)/opencodeserverctl

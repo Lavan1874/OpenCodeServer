@@ -1,0 +1,62 @@
+# macOS metadata
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Xcode and Swift build output
+DerivedData/
+build/
+.build/
+.swiftpm/
+*.xcarchive/
+*.xcresult/
+*.dSYM/
+*.dSYM.zip
+xcuserdata/
+*.xcuserstate
+*.xccheckout
+*.xcscmblueprint
+*.moved-aside
+*.hmap
+
+# Rust build output
+target/
+**/*.rs.bk
+
+# Packaged application artifacts
+*.app/
+*.dmg
+*.pkg
+*.ipa
+
+# Local configuration, credentials, and signing secrets
+.env
+.env.*
+!.env.example
+config.local.plist
+*.key
+*.pem
+*.p12
+*.pfx
+*.mobileprovision
+*.provisionprofile
+
+# Editor and temporary files
+.idea/
+.vscode/
+.claude/
+*.swp
+*.swo
+*~
+*.tmp
+*.log
+
+# Test and coverage artifacts
+coverage/
+*.profraw
+*.profdata
+tarpaulin-report.html
+cobertura.xml
+# cargo doc output (not the tracked docs/ directory)
+doc/

@@ -1,0 +1,14 @@
+#include "Base.xcconfig"
+
+// The concrete Apple Development identity is intentionally not recorded in
+// the tracked tree (public-mirror discipline). Release acceptance builds
+// inject it through scripts/build.sh, which reads
+// ~/.config/opencodeserver/signing-identity or $SIGNING_IDENTITY; the Xcode
+// GUI and CI default stays ad hoc.
+CODE_SIGN_IDENTITY = -
+SWIFT_COMPILATION_MODE = wholemodule
+SWIFT_OPTIMIZATION_LEVEL = -O
+ENABLE_TESTABILITY = NO
+DEBUG_INFORMATION_FORMAT = dwarf-with-dsym
+COPY_PHASE_STRIP = YES
+STRIP_INSTALLED_PRODUCT = YES
