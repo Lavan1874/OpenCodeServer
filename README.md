@@ -73,7 +73,7 @@ quarantine attribute, so the app opens without any dialog. Extract with
 
 ```sh
 curl -LO https://github.com/Lavan1874/OpenCodeServer/releases/latest/download/OpenCodeServer-latest.zip
-ditto -x -k OpenCodeServer-latest.zip
+ditto -x -k OpenCodeServer-latest.zip .
 mv OpenCodeServer.app /Applications
 open /Applications/OpenCodeServer.app
 ```
