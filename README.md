@@ -78,27 +78,16 @@ curl -fsSL https://raw.githubusercontent.com/Lavan1874/OpenCodeServer/main/scrip
 ```
 
 If OpenCodeServer is already running, the script asks it to quit before
-replacing the bundle.
+replacing the bundle. The script is short and readable at
+[scripts/install-app.sh](scripts/install-app.sh).
 
-**B. Command line, explicit — no Gatekeeper prompt.** The same channel
-without piping to a shell: `curl` downloads carry no quarantine
-attribute, so the app opens without any dialog. Extract with `ditto`
-(not `unzip`) to preserve the signature:
-
-```sh
-curl -LO https://github.com/Lavan1874/OpenCodeServer/releases/latest/download/OpenCodeServer-latest.zip
-ditto -x -k OpenCodeServer-latest.zip .
-mv OpenCodeServer.app /Applications
-open /Applications/OpenCodeServer.app
-```
-
-**C. Browser download.** Grab the `.zip` or `.dmg` from the Releases
+**B. Browser download.** Grab the `.zip` or `.dmg` from the Releases
 page and drag `OpenCodeServer.app` to /Applications. The first open is
 blocked because the app is not notarized; approve it once via System
 Settings → Privacy & Security → **"Open Anyway"**. This repeats after
 every version update.
 
-**D. Homebrew tap.**
+**C. Homebrew tap.**
 
 ```sh
 brew tap lavan1874/opencodeserver
