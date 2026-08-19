@@ -22,4 +22,4 @@ LD_RUNPATH_SEARCH_PATHS = $(inherited) @executable_path/../Frameworks
 
 // Single source of truth for CFBundleVersion. Bump here for every acceptance
 // candidate; target-level copies invite Debug/Release version skew.
-CURRENT_PROJECT_VERSION = 86
+CURRENT_PROJECT_VERSION = 87

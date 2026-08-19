@@ -295,11 +295,18 @@ FDA verification MUST be performed by `OpenCodeServerAgent`, because that is
 the process responsible for launching OpenCode. A positive result must come
 from a minimal, read-only functional probe against an item that is known to
 require FDA on the target macOS version. Do not read or retain user content.
-ADR 0002 defines the versioned macOS 26 probe target as
-`~/Library/Safari/History.db` and constrains the operation to read-only open,
-metadata inspection, and immediate close without reading user content. Keep
-that target covered by versioned tests; changing it requires a new documented
-decision. A failed probe is not conclusive proof that the FDA switch is off.
+ADR 0002 (2026-08-20 amendment) defines the probe as version-gated and
+consensus-based: only macOS 26.x probes, over the versioned target set
+`~/Library/Safari/History.db`, `~/Library/Mail/V10`, and
+`~/Library/Suggestions` (per target: read-only open, metadata inspection,
+immediate close, no content read; `stat` for existence only — it is not
+TCC-gated and must never be the access test). Every other OS version —
+including macOS ≥27, where every classic FDA-protected path measured on
+27.0 beta 26A5416b was readable without FDA — reports
+`Unable to Determine` without probing. Keep the target table covered by
+versioned tests; changing it requires a new documented decision and, for a
+new OS major version, a clean-state on-metal A/B re-measurement. A failed
+probe is not conclusive proof that the FDA switch is off.
 
 Do not display or proactively probe FileProviderDomain status in the first
 version. The current product assumption is that verified FDA is sufficient for

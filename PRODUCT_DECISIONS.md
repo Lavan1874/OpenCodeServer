@@ -95,6 +95,7 @@
 ## FDA 与 File Provider
 
 - FDA 由 OpenCodeServerAgent 通过最小只读功能探测验证，不查询或修改 TCC 数据库。
+- 探测按 OS 主版本门控（ADR 0002，2026-08-20 修订）：仅 macOS 26.x 使用三目标存在感知共识（Safari/History.db、Mail/V10、Suggestions；open+metadata+close，stat 仅判存在性，不作访问判据）；其余版本——包括实测中经典受保护路径已全部畅通的 macOS ≥27——一律如实报“无法判断”且不探测；27 正式版发布后须在干净状态重测，再决定是否恢复 27 的判据或隐藏该行。
 - FDA 使用三态：“已验证 / 未验证 / 无法判断”。
 - FDA 为“未验证”或“无法判断”时仍允许启动 OpenCode，但必须明确提示权限风险，不把探测结果作为强制启动条件。
 - OpenCodeServerAgent 启动时自动验证；打开 OpenCodeServer 菜单或设置、从系统设置返回时按需刷新；同时提供手动重新验证，不持续轮询。

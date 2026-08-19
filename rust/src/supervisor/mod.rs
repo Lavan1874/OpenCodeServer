@@ -23,7 +23,7 @@ pub use crate::version_query::{
 };
 use std::fs::File;
 use std::io;
-use std::path::PathBuf;
+use std::path::{Path, PathBuf};
 use std::sync::mpsc;
 use std::thread;
 use std::thread::JoinHandle;
@@ -860,24 +860,104 @@ fn unauthorized_credential_message(state: CredentialState) -> &'static str {
     }
 }
 
+// ADR 0002 (2026-08-20 amendment): the FDA probe is version-gated and uses
+// an existence-aware consensus. Only macOS 26.x probes; every other OS
+// version — including macOS >= 27, where the classic FDA-protected surface
+// was measured as ungated on 27.0 beta 26A5416b — reports
+// `UnableToDetermine` without touching the filesystem.
+const FDA_PROBE_OS_MAJOR_VERSION: u32 = 26;
+const FDA_PROBE_TARGETS: &[&str] = &[
+    "Library/Safari/History.db",
+    "Library/Mail/V10",
+    "Library/Suggestions",
+];
+
+#[derive(Clone, Copy, PartialEq, Eq)]
+enum FdaProbeOutcome {
+    Accessible,
+    Denied,
+    Unknown,
+}
+
 fn probe_full_disk_access() -> FdaState {
     let Some(home) = std::env::var_os("HOME") else {
         return FdaState::UnableToDetermine;
     };
-    let target = std::path::PathBuf::from(home).join("Library/Safari/History.db");
-    match File::open(target) {
+    fda_state_for_version(macos_product_major_version(), Path::new(&home))
+}
+
+fn fda_state_for_version(major: Option<u32>, home: &Path) -> FdaState {
+    if major != Some(FDA_PROBE_OS_MAJOR_VERSION) {
+        return FdaState::UnableToDetermine;
+    }
+    let mut existing = 0usize;
+    let mut accessible = 0usize;
+    let mut denied = 0usize;
+    for relative in FDA_PROBE_TARGETS {
+        let target = home.join(relative);
+        // stat() is not TCC-gated on macOS 26 (measured 2026-08-19), so it
+        // is used for existence only and never as the access test.
+        if !target.exists() {
+            continue;
+        }
+        existing += 1;
+        match fda_probe_target(&target) {
+            FdaProbeOutcome::Accessible => accessible += 1,
+            FdaProbeOutcome::Denied => denied += 1,
+            FdaProbeOutcome::Unknown => {}
+        }
+    }
+    if existing == 0 || (accessible > 0 && denied > 0) || accessible + denied != existing {
+        FdaState::UnableToDetermine
+    } else if denied == existing {
+        FdaState::NotVerified
+    } else {
+        FdaState::Verified
+    }
+}
+
+fn fda_probe_target(path: &Path) -> FdaProbeOutcome {
+    match File::open(path) {
         Ok(file) => match file.metadata() {
-            Ok(_) => FdaState::Verified,
-            Err(_) => FdaState::UnableToDetermine,
+            Ok(_) => FdaProbeOutcome::Accessible,
+            Err(_) => FdaProbeOutcome::Unknown,
         },
         Err(error)
             if error.kind() == io::ErrorKind::PermissionDenied
                 || error.raw_os_error() == Some(libc::EPERM) =>
         {
-            FdaState::NotVerified
+            FdaProbeOutcome::Denied
         }
-        Err(_) => FdaState::UnableToDetermine,
+        Err(_) => FdaProbeOutcome::Unknown,
     }
+}
+
+fn parse_product_major_version(value: &str) -> Option<u32> {
+    value.split('.').next()?.parse().ok()
+}
+
+fn macos_product_major_version() -> Option<u32> {
+    // SAFETY: `sysctlbyname` writes at most `buffer.len()` bytes into the
+    // stack-local `buffer`, updates the stack-local `size`, and reads only
+    // the static NUL-terminated name. It accesses no other memory.
+    let value = unsafe {
+        let mut buffer = [0u8; 32];
+        let mut size = buffer.len();
+        let name = c"kern.osproductversion".as_ptr().cast::<libc::c_char>();
+        if libc::sysctlbyname(
+            name,
+            buffer.as_mut_ptr().cast::<libc::c_void>(),
+            &mut size,
+            std::ptr::null_mut(),
+            0,
+        ) != 0
+        {
+            return None;
+        }
+        let length = size.min(buffer.len());
+        String::from_utf8_lossy(&buffer[..length]).into_owned()
+    };
+    parse_product_major_version(value.trim_end_matches(['\0', '\n']))
 }
 
 mod credential;

@@ -747,3 +747,139 @@ fn action_capabilities_follow_authoritative_lifecycle_facts() {
     drop(supervisor);
     std::fs::remove_dir_all(root).expect("remove test root");
 }
+
+// ---- FDA probe (ADR 0002, 2026-08-20 amendment) ----
+
+fn fda_probe_root(tag: &str) -> std::path::PathBuf {
+    let nonce = SystemTime::now()
+        .duration_since(UNIX_EPOCH)
+        .expect("clock")
+        .as_nanos();
+    std::env::temp_dir().join(format!(
+        "opencodeserver-fda-probe-{tag}-{}-{nonce}",
+        std::process::id()
+    ))
+}
+
+fn fda_probe_fixture(root: &std::path::Path, targets: &[&str]) {
+    for relative in targets {
+        let path = root.join(relative);
+        std::fs::create_dir_all(path.parent().expect("fixture parent"))
+            .expect("fixture parent directory");
+        if relative.ends_with(".db") {
+            std::fs::write(&path, b"SQLite format 3\0").expect("fixture file target");
+        } else {
+            std::fs::create_dir(&path).expect("fixture directory target");
+        }
+    }
+}
+
+fn fda_probe_deny(path: &std::path::Path) {
+    use std::os::unix::fs::PermissionsExt;
+    std::fs::set_permissions(path, std::fs::Permissions::from_mode(0o000))
+        .expect("deny fixture permissions");
+}
+
+#[test]
+fn fda_probe_targets_are_versioned_by_adr_0002() {
+    // Changing this table is an ADR 0002 decision, not a code tweak: the
+    // assertion exists so any edit fails this test first.
+    assert_eq!(
+        FDA_PROBE_TARGETS.to_vec(),
+        vec![
+            "Library/Safari/History.db",
+            "Library/Mail/V10",
+            "Library/Suggestions",
+        ]
+    );
+}
+
+#[test]
+fn parse_product_major_version_covers_release_shapes() {
+    assert_eq!(parse_product_major_version("26.6.1"), Some(26));
+    assert_eq!(parse_product_major_version("27"), Some(27));
+    assert_eq!(parse_product_major_version("10.15.7"), Some(10));
+    assert_eq!(parse_product_major_version(""), None);
+    assert_eq!(parse_product_major_version("not-a-version"), None);
+}
+
+#[test]
+fn fda_probe_gates_on_os_major_version() {
+    let root = fda_probe_root("gate");
+    fda_probe_fixture(&root, FDA_PROBE_TARGETS);
+    assert_eq!(
+        fda_state_for_version(None, &root),
+        FdaState::UnableToDetermine
+    );
+    assert_eq!(
+        fda_state_for_version(Some(FDA_PROBE_OS_MAJOR_VERSION + 1), &root),
+        FdaState::UnableToDetermine
+    );
+    assert_eq!(
+        fda_state_for_version(Some(28), &root),
+        FdaState::UnableToDetermine
+    );
+    assert_eq!(fda_state_for_version(Some(26), &root), FdaState::Verified);
+    let _ = std::fs::remove_dir_all(&root);
+}
+
+#[test]
+fn fda_probe_verified_when_all_existing_targets_open() {
+    let root = fda_probe_root("verified");
+    fda_probe_fixture(&root, FDA_PROBE_TARGETS);
+    assert_eq!(fda_state_for_version(Some(26), &root), FdaState::Verified);
+    // Existence-aware: a subset of targets still yields a verdict when the
+    // rest of the fixture (e.g. Mail data) was never initialized.
+    let partial = fda_probe_root("verified-partial");
+    fda_probe_fixture(
+        &partial,
+        &["Library/Safari/History.db", "Library/Suggestions"],
+    );
+    assert_eq!(
+        fda_state_for_version(Some(26), &partial),
+        FdaState::Verified
+    );
+    let _ = std::fs::remove_dir_all(&root);
+    let _ = std::fs::remove_dir_all(&partial);
+}
+
+#[test]
+fn fda_probe_unable_when_no_targets_exist() {
+    let root = fda_probe_root("absent");
+    std::fs::create_dir_all(&root).expect("empty fixture root");
+    assert_eq!(
+        fda_state_for_version(Some(26), &root),
+        FdaState::UnableToDetermine
+    );
+    let _ = std::fs::remove_dir_all(&root);
+}
+
+#[test]
+fn fda_probe_not_verified_when_every_existing_target_denies() {
+    let root = fda_probe_root("denied");
+    fda_probe_fixture(&root, FDA_PROBE_TARGETS);
+    for relative in FDA_PROBE_TARGETS {
+        fda_probe_deny(&root.join(relative));
+    }
+    assert_eq!(
+        fda_state_for_version(Some(26), &root),
+        FdaState::NotVerified
+    );
+    let _ = std::fs::remove_dir_all(&root);
+}
+
+#[test]
+fn fda_probe_unable_on_mixed_accessibility() {
+    // Models the measured 2026-08-19 drift: one target readable while its
+    // siblings stay denied. Consensus must degrade to uncertainty rather
+    // than trust the single readable target.
+    let root = fda_probe_root("mixed");
+    fda_probe_fixture(&root, FDA_PROBE_TARGETS);
+    fda_probe_deny(&root.join("Library/Mail/V10"));
+    fda_probe_deny(&root.join("Library/Suggestions"));
+    assert_eq!(
+        fda_state_for_version(Some(26), &root),
+        FdaState::UnableToDetermine
+    );
+    let _ = std::fs::remove_dir_all(&root);
+}
