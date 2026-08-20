@@ -9,8 +9,9 @@ serials). Where the real values live:
 - `~/.config/opencodeserver/signing-identity` — one line, the exact
   identity name (for example `Apple Development: developer@example.com
   (LEAFIDXXXX)`). Consumed by `scripts/build.sh` (Release default) and
-  `scripts/install.sh` (required leaf authority); overridable with
-  `SIGNING_IDENTITY` / `OPENCODESERVER_SIGNING_AUTHORITY`.
+  by the maintainer Release installer's required-leaf-authority check;
+  overridable with `SIGNING_IDENTITY` /
+  `OPENCODESERVER_SIGNING_AUTHORITY`.
 - `~/Documents/OpenCodeServer-References/signing-identity.md` — the live
   runbook copy of this template, kept in sync by the maintainer.
 - `~/.config/opencodeserver/sensitive-patterns` — the fixed strings the
@@ -93,7 +94,8 @@ and TCC/Keychain reauthorization results before installation.
 
 A reissued certificate changes the leaf suffix (`(<leaf-id>)`) and
 therefore the leaf authority string. Update
-`~/.config/opencodeserver/signing-identity` — the single source consumed by
-`scripts/build.sh` Release defaults and `scripts/install.sh`'s
-`required_signing_authority` — together with the identity facts table
-above, and re-run the ADR 0021 identity-change installer gate.
+`~/.config/opencodeserver/signing-identity` — the single source consumed
+by `scripts/build.sh` Release defaults and by the maintainer Release
+installer's `required_signing_authority` — together with the identity
+facts table above, and re-run the ADR 0021 identity-change installer
+gate.

@@ -21,6 +21,43 @@ The format is loosely based on [Keep a Changelog](https://keepachangelog.com/).
   FDA — the status reports "Unable to Determine" without probing. The
   measurement record is in ADR 0002 (2026-08-20 amendment).
 
+## Build 86 — 2026-08-18
+
+### Changed
+- OpenCodeServerAgent now reports authoritative action capabilities
+  (IPC protocol 6): start/stop/restart/force-stop availability follows
+  the agent's state instead of being inferred by the GUI or
+  `opencodeserverctl`.
+- Service Management registration state is persisted as a bounded
+  transaction, so an OpenCodeServer restart can no longer reset the
+  unregister/register attempt budget during a bundle-version update.
+- Settings credential edits are scoped to one window presentation;
+  unsaved credential state no longer survives across presentations.
+- Private registration-state reads are bounded and fail closed, with a
+  degraded-mode journal rule.
+
+### Added
+- First public release (v86): MIT license with an unofficial-project
+  disclaimer, three install channels (one-line installer with SHA-256
+  and signature verification, zip/dmg download, Homebrew tap with
+  automatic cask bumps on new releases).
+
+## Build 85 — 2026-08-17
+
+### Internal
+- Test and CI stabilization only; no user-visible changes.
+
+## Build 84 — 2026-08-17
+
+### Changed
+- Runtime-state persistence fails closed: OpenCodeServerAgent stops
+  rather than supervising from state it could not durably record, and
+  recovers cleanly after metadata save faults or uncertain syncs.
+- Authorized process-group cleanup now converges after the direct child
+  exits, and periodic health checks moved off the supervisor loop so
+  slow checks cannot stall supervision.
+- Keychain account migration is atomic and recoverable mid-fault.
+
 ## Build 83 — 2026-08-17
 
 ### Changed

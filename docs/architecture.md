@@ -140,5 +140,5 @@ build. Candidates are gated by strict bundle validation, `codesign
 --verify --deep --strict`, and mutual Designated Requirement checks; the
 concrete signing identity is intentionally not part of the tracked tree
 (`docs/signing-identity.example.md`, ADR 0021). Privacy attribution,
-TCC, and Service Management acceptance require the documented clean-machine
-manual gates in [ACCEPTANCE.md](ACCEPTANCE.md).
+TCC, and Service Management acceptance are covered by the maintainer's
+documented clean-machine manual gates.

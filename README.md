@@ -105,11 +105,11 @@ regardless of channel. First launch registers the background
 OpenCodeServerAgent through `SMAppService` and creates the configuration
 under `~/Library/Application Support/OpenCodeServer`.
 
-Releasing is automated by `scripts/cut-release.sh <notes.md>` (clean
-Release build with the configured identity, ditto zip + dmg with zip
-round-trip signature verification, GitHub Release with a stable
-`-latest.zip` alias, and a Homebrew tap notification that auto-bumps the
-cask).
+Releases are published on the Releases page as `zip`/`dmg` with SHA-256
+sidecars plus a stable `-latest.zip` alias used by the one-line
+installer; each release also triggers the Homebrew tap's automatic cask
+bump. Release engineering itself is maintainer-side tooling and is not
+part of the public tree.
 
 ## Build
 
@@ -137,21 +137,11 @@ testing.
 
 ## Install
 
-Ad hoc builds are for local experimentation — copy the built app where you
-want it, or run it in place. The transactional installer is the maintainer
-Release path (it enforces a configured signing authority):
-
-```sh
-./scripts/install.sh build/OpenCodeServer.app
-open /Applications/OpenCodeServer.app
-```
-
-The installer validates signatures and Designated Requirements, stages the
-candidate, and atomically replaces the previous bundle — restored on any
-failure, with the staging path reported if a restore itself fails. It does
-not stop an active OpenCodeServerAgent or OpenCode. After a bundle-version
-change the app runs one bounded registration-update transaction before
-committing the new version; see
+Ad hoc builds are for local experimentation — copy the built app into
+`/Applications` (or run it in place) and open it. For signed release
+builds use the install channels above; after a bundle-version change the
+app runs one bounded registration-update transaction before committing
+the new version; see
 [docs/architecture.md](docs/architecture.md).
 
 On first launch OpenCodeServer creates:
@@ -256,8 +246,8 @@ The hosted AppKit tests set an isolated test mode before application
 startup, so they do not create or change the normal Application Support
 configuration, register services, or contact a running production
 OpenCodeServerAgent. Real keyboard interaction, Service Management,
-privacy permissions, and attribution are covered by the manual gates in
-[docs/ACCEPTANCE.md](docs/ACCEPTANCE.md).
+privacy permissions, and attribution are covered by manual acceptance
+testing on real machines before each release.
 
 ## License
 
