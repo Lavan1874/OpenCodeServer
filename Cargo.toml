@@ -30,7 +30,7 @@ test-fixture = []
 diagnostic-local-network = []
 
 [dependencies]
-base64 = "0.22.1"
+base64 = "0.23.1"
 getrandom = "0.4.3"
 hmac = "0.12.1"
 libc = "0.2.186"
