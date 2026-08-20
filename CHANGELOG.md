@@ -8,6 +8,19 @@ The format is loosely based on [Keep a Changelog](https://keepachangelog.com/).
 
 ---
 
+## Build 87 — 2026-08-20
+
+### Changed
+- Full Disk Access status is now honest about macOS versions it cannot
+  verify. The agent's probe is gated to macOS 26 and evaluates an
+  existence-aware consensus over three protected targets
+  (`Safari/History.db`, `Mail/V10`, `Suggestions`) instead of a single
+  file, which could report a false "Verified" after one target became
+  readable without FDA. On every other macOS version — including 27.0
+  beta, where every classic protected path was measured readable without
+  FDA — the status reports "Unable to Determine" without probing. The
+  measurement record is in ADR 0002 (2026-08-20 amendment).
+
 ## Build 83 — 2026-08-17
 
 ### Changed
