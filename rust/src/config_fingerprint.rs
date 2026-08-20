@@ -1,7 +1,7 @@
 use crate::config::ValidatedConfig;
 use crate::paths::AppPaths;
 use crate::platform::{effective_uid, file_descriptor_identity};
-use hmac::{Hmac, Mac};
+use hmac::{Hmac, KeyInit, Mac};
 use serde::{Deserialize, Serialize};
 use sha2::Sha256;
 use std::fmt;
