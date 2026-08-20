@@ -32,7 +32,7 @@ diagnostic-local-network = []
 [dependencies]
 base64 = "0.23.1"
 getrandom = "0.4.3"
-hmac = "0.12.1"
+hmac = "0.13.0"
 libc = "0.2.186"
 plist = "1.8.0"
 serde = { version = "1.0.228", features = ["derive"] }
